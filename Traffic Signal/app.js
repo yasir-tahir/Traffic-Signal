@@ -1,16 +1,29 @@
-
-
+``
 var count = 1;
+var ref;
 
-function abc(){
-    var car = document.getElementById("car");
-    count += 5;
+function abc() {
+  var car = document.getElementById("car");
+  count += 5;
+  
 
-    car.style.left = count + "px"
+  if (count > window.innerWidth - car.offsetWidth) {
+    count = 0; 
+  }
+
+  car.style.left = count + "px";
 }
 
-var ref = setInterval(abc, 20);
+function startCar() {
+  if (!ref) {
+    ref = setInterval(abc, 20);
+  }
+}
 
 function stopCar() {
-    clearInterval(ref)
+  clearInterval(ref);
+  ref = null; 
 }
+
+
+startCar();
